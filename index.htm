@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>E-mail Lookup</title>
+<style>
+	#container
+	{
+		position:absolute;
+		left:27%;
+	}
+	p
+	{
+		display:block;	
+		font-family:arial,, helvetica, sans-serif;
+		color:#0000CD;
+	}
+	body
+	{
+		background-color:#FFF5EE;
+	}
+	h1
+	{
+		display:block;
+		color:#000080;
+	}
+	table tr td
+	{
+		padding:0.5cm;
+	}
+	table 
+	{
+		border-style:dotted;
+	}
+</style>
+<script language="javascript">
+//function recieves what button user pressed and directs them to the corresponding page
+function init(what)
+{
+	switch(what)
+	{
+		case 1:
+				window.location = "inputSearchForm.php";
+				break;
+		case 2:
+				window.location = "report.php";			
+				break;
+	}
+}
+</script>
+</head>
+<body>
+<center><h1>E-mail Logger</h1></center>
+<br />
+<div id="container">
+<center>
+<table border="3" bordercolor="#191970">
+	<tr>
+		<td>
+			<p>Input a new search</p>
+			<center><input type="button" onclick="init(1)" value="Input Search"></center>
+		</td>
+	<tr>
+		<td>
+			<p>Run a report to check what has already been sent to DBA's for lookup</p>
+			<center><input type="button" onclick="init(2)" value="Run Report"></center>			
+		</td>
+	</tr>						
+</table>
+</center>
+</div>
+</body>
+</html>

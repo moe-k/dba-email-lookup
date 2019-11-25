@@ -1,0 +1,11 @@
+$oldDayPart=substr($date,$firstslash+1,$lastslash-2);
+above works for 
+6-5-2008
+6-26-2008
+
+$oldDayPart=substr($date,$firstslash+1,$lastslash-3);
+works for 
+12-13-2008
+12-3-2008
+
+

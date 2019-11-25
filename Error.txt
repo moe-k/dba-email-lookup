@@ -1,0 +1,1 @@
+on 6/4/2008 sara notified me that when she inputs certain ranges she gets error.  For the fix i basically deactivated the check in js file that is loaded when user inputs their search

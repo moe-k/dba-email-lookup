@@ -1,0 +1,141 @@
+/*
+Filename: inputSearchForm.js
+Purpose: Used to handle error checking and form submission in inputsearch.htm.
+Author: Mohamad Khalili
+Date: 1-30-2007 
+*/
+
+//function to handle error checking on the form before submitting.
+//parameter theForm recieves the form so it could be used to check fields.
+function checkform(theForm)
+{
+	//varible to hold errors before the form is submited to serverside script for logging.  
+	//this will be used later to build up error string and disply to the user any errors that occured.
+	var errorBuilder = "";
+	//instead of writing out theForm.document.element.value i save time by using with statement.
+	with(theForm)
+	{
+		//check to see if email textarea is filled out, if not the we build an error string
+		//which will be displayed later on and put focus on the textarea for the user
+		if(email.value == "")
+		{
+				//build error string and marke the background of email textarea to red indicating error
+				//and set focus to it.
+				errorBuilder="Please fill out email being sent to the dba before logging.  ";
+				email.style.backgroundColor="#8B0000";
+				theForm.email.focus();
+		}
+		//check if range field is filled out.  If length is > 0 then we know user has input something in that field.
+		//if not we skip to else and build error statement.
+		if(range.value.length > 0)
+		{		
+				//check to see if - exist in the range field on the form if it does exist range.value.search will return its position.  if it returns a -1 it 
+				//means that the field doesn't contain a - in it so we know error occured and we skip to else and build error statement.  
+				if(range.value.search("-") != -1)
+				{				    
+					/*Debug
+					//alert("range has something entered and it has a - in it");			
+					//alert(range.value.charAt(range.value.indexOf("-")-1));
+					//alert(range.value.search("-"));
+					*/
+					
+					//check if leftside of the - contain either l,k,m or b if it does the leftside passed test and we move to the rightside check, if not then we build error 
+					//string again to show the user and put focus on that field.
+					if(range.value.charAt(range.value.search("-")-1) == "l" ||
+					   range.value.charAt(range.value.search("-")-1) == "k" ||
+					   range.value.charAt(range.value.search("-")-1) == "m" ||
+					   range.value.charAt(range.value.search("-")-1) == "b")
+					   {
+							    /*Debug
+								alert("leftside correct");						   
+								//alert(range.value.charAt(range.value.length-1));
+								//alert("rightside: "+range.value.charAt(range.value.length - 1));		
+								*/
+								//if we land in here we know that there is a - in the range field and a left side of - passed test so we 
+								//need to now check the right side of the range field to see if the user filled it out correctly,  If its correct it will have 
+								//either a l,k,m or b. 
+								if(range.value.charAt(range.value.length-1) == "l" ||
+								   range.value.charAt(range.value.length-1) == "k" ||
+								   range.value.charAt(range.value.length-1) == "m" ||
+								   range.value.charAt(range.value.length-1) == "b")
+								{
+									//Debug
+								    //alert("Both left and right side passed yeah");    
+								}	
+								else
+								{
+									alert("rigt side is wrong");
+									errorBuilder="Please fill out range correctly before submitting IE 200k-300k.  ";
+									range.style.backgroundColor="#8B0000";
+									theForm.range.focus();
+								}
+					   }
+					else
+					{ 
+						alert("leftside wrong");
+						errorBuilder="Please fill out range correctly before submitting IE 200k-300k.  ";
+						range.style.backgroundColor="#8B0000";
+						theForm.range.focus();
+					}
+				}
+				else
+				{
+					alert("doesnt contain a - in range field");
+					errorBuilder="Please fill out range correctly before submitting IE 200k-300k.  ";
+					range.style.backgroundColor="#8B0000";
+					theForm.range.focus();
+				}
+		}
+		
+		//here i check to see if amount returned field on the form is filled out.
+		if(amountReturned.value.length > 0)
+		{
+			//if amount returned field is filled out then i store it in variable myAmountReturned
+			//and run a regular expression against it to see if it passes check.  The pattern checks
+			//to see if there is any digits fillowed by letters l,k,m or b which indicates again how many
+			//results were retuned from the db search that is being logged.  If it doesnt pass we add new alert to error string.
+			var myAmountReturned = amountReturned.value;
+			var myRangeExp =  /\d{1}[l|k|m|b|L|K|M|B]/;
+			
+			//run the test against the reg expresision stored in myRangeExp and branch
+			if(myRangeExp.test(myAmountReturned))
+			{
+				
+			}		
+			else
+			{
+				errorBuilder+="Need to fillout amount ID's returned correctly IE 100l or 100k or 100m or 100b ";	
+				amountReturned.style.backgroundColor="#8B0000";	
+				theForm.amountReturned.focus();
+			}
+		}	
+		
+		//check to see if errorBuilder string is present if so then alert the user the errors occured.
+		//If errors aren't present then we can submit the form.
+		if(errorBuilder.length > 0)
+			alert(errorBuilder);
+		else
+		{
+			theForm.submit();
+		}
+		
+	}//end with
+	
+}
+//function used to handle clearing of textarea when a user makes an error.  Parameter whatArea is used as an
+//indicator which signals what form field to clear.  Check inputsearch.htm form onclick event handler
+function clearTextArea(whatArea)
+{
+	switch(whatArea)
+	{
+		case 1:document.myInputForm.email.style.backgroundColor = "#FFFFFF";
+			  document.myInputForm.email.value = "";	
+			   break;			   
+		case 2: document.myInputForm.range.style.backgroundColor="#FFFFFF"; 
+			   document.myInputForm.range.value = ""
+		           break;
+		case 3: document.myInputForm.amountReturned.style.backgroundColor="#FFFFFF";
+		           document.myInputForm.amountReturned.value = "";
+			   break;
+	}
+}

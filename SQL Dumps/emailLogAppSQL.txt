@@ -1,0 +1,37 @@
+
+
+//.sql code
+CREATE TABLE `emailLogs` (
+`id` INT NOT NULL ,
+`userDropdown` TINYTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`email` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`leftRange` INT NOT NULL ,
+`rightRange` INT NOT NULL ,
+`amountReturned` INT NOT NULL ,
+`headline` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`aboutMe` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`likeToMeet` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`music` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`books` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`movies` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`general` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`date` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+PRIMARY KEY ( `id` )
+) ENGINE = MYISAM CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+
+
+
+//php code
+$sql = 'CREATE TABLE `EmailLogs` ('
+        . ' `id` INT NOT NULL, '
+        . ' `userDropdown` TINYTEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, '
+        . ' `email` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, '
+        . ' `leftRange` INT NOT NULL, '
+        . ' `rightRange` INT NOT NULL, '
+        . ' `amountReturned` INT NOT NULL, '
+        . ' `headline` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, '
+        . ' `aboutMe` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, '
+        . ' `likeToM[...]';
+
+
+

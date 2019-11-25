@@ -1,0 +1,29 @@
+2-27-2008
+----------
+
+1. Allow users to edit info after it has been input.
+
+2. Have the latest searches go to the top of the page instead of the bottom.
+
+3. Have running totals, for both by user and by day.
+
+The above was requested by Marcus Morgan
+
+
+
+3-12-2008
+----------
+X3. Added running totals for user based on emails sent out.           Basically a sum of all amountreturns totaled up which becomes the
+    number of deletes done off all the emails to dba.  
+
+X2. Modified code to get latest searches by user to goto the top of list.
+
+
+
+
+
+
+
+
+
+
